@@ -1,8 +1,8 @@
 package com.tru.util;
 
-import com.tru.util.model.Classroom;
-import com.tru.util.model.Position;
-import com.tru.util.model.Student;
+import com.tru.model.Classroom;
+import com.tru.model.Position;
+import com.tru.model.Student;
 import org.junit.Assert;
 import org.junit.Test;
 

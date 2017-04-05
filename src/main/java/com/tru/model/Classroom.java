@@ -1,4 +1,4 @@
-package com.tru.util.model;
+package com.tru.model;
 
 /**
  * @author Yassir Aguila
