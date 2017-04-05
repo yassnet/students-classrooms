@@ -1,4 +1,4 @@
-package com.tru.util.model;
+package com.tru.model;
 
 /**
  * @author Yassir Aguila
@@ -6,7 +6,7 @@ package com.tru.util.model;
  * @since 1.8
  */
 public class Classroom {
-    
+
     private String name;
 
     private Position position;
@@ -25,10 +25,10 @@ public class Classroom {
         this.position = position;
         this.width = width;
         this.height = height;
-        this.maxXPosition = position.getX() + height/2;
-        this.minXPosition = position.getX() - height/2;
-        this.maxYPosition = position.getY() + height/2;
-        this.minYPosition = position.getY() - height/2;
+        this.maxXPosition = position.getX() + height / 2;
+        this.minXPosition = position.getX() - height / 2;
+        this.maxYPosition = position.getY() + height / 2;
+        this.minYPosition = position.getY() - height / 2;
     }
 
     public double getMaxXPosition() {

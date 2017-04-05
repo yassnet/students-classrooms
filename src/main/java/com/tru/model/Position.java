@@ -1,4 +1,4 @@
-package com.tru.util.model;
+package com.tru.model;
 
 import uk.me.jstott.jcoord.LatLng;
 import uk.me.jstott.jcoord.UTMRef;
