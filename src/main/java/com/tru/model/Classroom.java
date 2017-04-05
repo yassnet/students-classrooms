@@ -27,8 +27,8 @@ public class Classroom {
         this.height = height;
         this.maxXPosition = position.getX() + height / 2;
         this.minXPosition = position.getX() - height / 2;
-        this.maxYPosition = position.getY() + height / 2;
-        this.minYPosition = position.getY() - height / 2;
+        this.maxYPosition = position.getY() + width / 2;
+        this.minYPosition = position.getY() - width / 2;
     }
 
     public double getMaxXPosition() {
