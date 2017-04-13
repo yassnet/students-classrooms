@@ -1,10 +1,9 @@
-package com.tru.util;
+package com.tru.location;
 
 import com.tru.model.Classroom;
 import com.tru.model.Student;
 
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,9 @@ import java.util.stream.Collectors;
  * @version $Revision: 1.0 $ $Date: 2017-04-04
  * @since 1.8
  */
-public class GeolocationUtil {
+public class StudentLocatorInClassroom {
+
+    private Predicate<List> listIsEmpty = list -> (list == null || list.isEmpty());
 
     /**
      * Returns a list of students which are physically in any classroom
@@ -27,22 +28,23 @@ public class GeolocationUtil {
      * - This is intended to be performed in memory where you don’t have the usage of a database of some sort.
      * - This function uses UTM projection which has a deformation using high latitudes
      *
-     * @param  students  list of students
-     * @param  classrooms list of classrooms
+     * @param students list of students
+     * @param classrooms list of classrooms
      * @return list of students inside a classroom
      */
     public List<Student> studentsInClasses(List<Student> students,
-                                           List<Classroom> classrooms) {
+                                           List<Classroom> classrooms) throws IllegalArgumentException {
 
-        BiFunction<Student, Classroom, Boolean> isStudentInRoom = (element, room) ->
-                element.getPosition().getX() < room.getMaxXPosition() &&
-                        element.getPosition().getX() > room.getMinXPosition() &&
-                        element.getPosition().getY() < room.getMaxYPosition() &&
-                        element.getPosition().getY() > room.getMinYPosition();
+        if (listIsEmpty.test(students)) {
+            throw new IllegalArgumentException("Student list cannot be empty.");
+        }
 
-        Predicate<Student> isInAnyClassroom = element ->
-                classrooms.stream().anyMatch(classroom -> isStudentInRoom.apply(element, classroom));
+        if (listIsEmpty.test(classrooms)) {
+            throw new IllegalArgumentException("Classroom list cannot be empty.");
+        }
 
-        return students.parallelStream().filter(isInAnyClassroom).collect(Collectors.toList());
+        return students.parallelStream()
+                .filter(element -> classrooms.stream().anyMatch(classroom -> classroom.isInside(element.getPosition())))
+                .collect(Collectors.toList());
     }
 }
