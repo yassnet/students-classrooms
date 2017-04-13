@@ -25,26 +25,17 @@ public class Classroom {
         this.position = position;
         this.width = width;
         this.height = height;
-        this.maxXPosition = position.getX() + height / 2;
-        this.minXPosition = position.getX() - height / 2;
-        this.maxYPosition = position.getY() + width / 2;
-        this.minYPosition = position.getY() - width / 2;
+        this.maxXPosition = (position.getX() + height / 2);
+        this.minXPosition = (position.getX() - height / 2);
+        this.maxYPosition = (position.getY() + width / 2);
+        this.minYPosition = (position.getY() - width / 2);
     }
 
-    public double getMaxXPosition() {
-        return maxXPosition;
-    }
-
-    public double getMinXPosition() {
-        return minXPosition;
-    }
-
-    public double getMaxYPosition() {
-        return maxYPosition;
-    }
-
-    public double getMinYPosition() {
-        return minYPosition;
+    public boolean isInside(Position position) {
+        return (position.getX() < maxXPosition &&
+                position.getX() > minXPosition &&
+                position.getY() < maxYPosition &&
+                position.getY() > minYPosition);
     }
 
     @Override
